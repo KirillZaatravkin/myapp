@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-dark my-2">
+        <div class="card-body">
+          <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
+          <ul class="text-center list-inline py-1">
+            <li class="list-inline-item">
+              <a routerLink="/vopros" class="btn btn-info">Играть</a>
+              <a routerLink="/voprosabout" class="btn btn-info">Настройка</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <router-outlet>
+
+      </router-outlet>
+    </div>
+  </div>
+  <div style="background-color: #DDDDDD">
+    <div class="row" style="margin: 12px">
+      <div *ngFor="let csetItem of cset; let i = index" >
+        <form class="form">
+          <p><label class="cset">{{csetItem.title}}</label></p>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="csetItem.cset"
+
+                   class="form-control"
+                   id="cset"
+                   name="cset">
+          </div>
+          <button class="btn btn-info" (click)="updateCset(csetItem)">Update</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

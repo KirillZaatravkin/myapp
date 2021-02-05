@@ -1,0 +1,93 @@
+<div class="mee">
+  <div class="row">
+    <div id="header0">
+    </div>
+
+    <div id="header1">
+      А
+    </div>
+    <div id="header2">
+      Б
+    </div>
+    <div id="header3">
+      В
+    </div>
+  </div>
+  <div class="row">
+    <div id="col0">
+      <div *ngFor = "let in of [1,2,3,4,5,6,7];let i = index">
+        <div class="myblock">
+          <p>{{i+1}}</p>
+        </div>
+      </div>
+    </div>
+
+      <div id="col1">
+        <div *ngFor="let prod of vopros; let i = index">
+          <div *ngIf="i < 7">
+            <div *ngIf ="prod.flag == false">
+             <div class="myblock">
+              <p>{{ prod.title }}</p>
+              <a [routerLink]="'/productabout'"
+                 [queryParams]="{'id':prod.id}">go</a>
+             </div>
+            </div>
+            <div *ngIf ="prod.flag == true">
+              <div class="myblockClose">
+                <p>Вопрос закрыт</p>
+                <a [routerLink]="'/productabout'"
+                   [queryParams]="{'id':prod.id}">go</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <div id="col2">
+      <div *ngFor="let prod of vopros; let i = index">
+        <div *ngIf="i > 6 && i < 14">
+          <div *ngIf ="prod.flag == false">
+            <div class="myblock">
+              <p>{{ prod.title}}</p>
+              <a [routerLink]="'/productabout'"
+                 [queryParams]="{'id':prod.id}">go</a>
+            </div>
+          </div>
+          <div *ngIf ="prod.flag == true">
+            <div class="myblockClose">
+              <p>Вопрос закрыт</p>
+              <a [routerLink]="'/productabout'"
+                 [queryParams]="{'id':prod.id}">go</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="col3">
+      <div *ngFor="let prod of vopros; let i = index">
+        <div *ngIf="i > 13 && i < 21">
+          <div *ngIf ="prod.flag == false">
+            <div class="myblock">
+              <p>{{ prod.title }}</p>
+              <a [routerLink]="'/productabout'"
+                 [queryParams]="{'id':prod.id}">go</a>
+            </div>
+          </div>
+          <div *ngIf ="prod.flag == true">
+            <div class="myblockClose">
+              <p>Вопрос закрыт</p>
+              <a [routerLink]="'/productabout'"
+                 [queryParams]="{'id':prod.id}">go</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+</div>
+

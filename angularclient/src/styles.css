@@ -1,0 +1,118 @@
+.myblock {
+  flex-wrap: wrap;
+  height:100px;
+  width: 100%;
+  border: blue;
+  border-style: double;
+  margin-bottom: 10px;
+
+}
+
+.myblockClose {
+  flex-wrap: wrap;
+  height:100px;
+  width: 100%;
+  border: rgba(23, 20, 20, 0.41);
+  border-style: double;
+  margin-bottom: 10px;
+  background-color: darkgray;
+
+}
+.cset {
+  color: #920909;
+}
+
+ .fieldset {
+  border: 1px solid #339dc7;
+
+  display: inline-block;
+}
+
+ .legend {
+  color: #339dc7;
+}
+
+.mee{
+  margin:0 25% 0 25%;
+  width:100%;
+}
+#header0,#header1, #header2, #header3, #col0, #col1, #col2, #col3 {
+  border: 1px solid black;
+  font-family:'Times New Roman';
+  margin-right: 5px;
+}
+.row{
+  display:flex;
+}
+#header1, #header2, #header3{
+  height:50px;
+  width:180px;
+  margin:10px 5px 10px 0;
+  text-align:center;
+  background-color: #de8282;
+  color: #032a16;
+}
+#header0{
+  height:50px;
+  width:50px;
+  margin:10px 5px 10px 0;
+  text-align:center;
+}
+
+#col1, #col2, #col3 {
+  width:180px;
+  height:auto;
+}
+
+
+#header0 {
+  border: none;
+}
+
+
+#col0 {
+  background-color: #de8282;
+  width:50px;
+  height:auto;
+  text-align:center;
+  color: #032a16;
+}
+
+#col1 {
+  background-color:#FAC495;
+}
+#col2 {
+  background-color:#C6D7A0;
+}
+#col3 {
+  background-color:#9AB7D9;
+}
+
+
+drop-box {
+  cursor: pointer;
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  text-align: center;
+  padding: 40px;
+}
+
+.drag-over-title {
+  display: none;
+}
+
+.drop-box.dragover {
+  opacity: 0.6;
+}
+
+.drop-box.dragover .drag-over-title {
+  display: block;
+}
+
+.drop-box.dragover .drag-in-title {
+  display: none;
+}
+
+input[type='file'] {
+  display: none;
+}

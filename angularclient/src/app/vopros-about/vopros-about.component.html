@@ -1,0 +1,68 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form>
+
+      <div class="form-group">
+        <label for="title">Название вопроса</label>
+        <input type="text" [(ngModel)]="vopros.title"
+               class="form-control"
+               id="title"
+               name="title"
+               placeholder="Введите название">
+      </div>
+
+      <div class="form-group">
+        <label for="opisanie">Описание</label>
+        <input type="text" [(ngModel)]="vopros.opisanie"
+               class="form-control"
+               id="opisanie"
+               name="opisanie"
+               placeholder="Введите описаине">
+      </div>
+
+      <div *ngIf="vopros.file != null">
+       <img autofocus class = "img-responsive" id="userImg" src="../assets/image/{{vopros.file}}" height="587px">
+     </div>
+      <div *ngIf="vopros.flag">
+        <h2>Ответ: <span class="badge badge-primary" style="font-size: xx-large">{{vopros.otvet}}</span></h2>
+      </div>
+
+      <button ng-click="showBlock = ! showBlock" class="btn btn-danger" (click)="closeProduct()">Ответ</button>
+
+      <details>
+        <summary>Редактировать</summary>
+        <div class="form-group">
+          <label for="otvet">Ответ: </label>
+          <input type="text" [(ngModel)]="vopros.otvet"
+                 class="form-control"
+                 id="otvet"
+                 name="otvet"
+                 placeholder="Введите ответ">
+        </div>
+        <button class="btn btn-info" (click)="updateProduct()">Update</button>
+      <div *ngIf="currentFile" class="progress">
+        <div
+          class="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar"
+          attr.aria-valuenow="{{ progress }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          [ngStyle]="{ width: progress + '%' }"
+        >
+          {{ progress }}%
+        </div>
+      </div>
+      <label class="btn btn-default">
+        <input type="file" style="display: block" (change)="selectFile($event)" />
+      </label>
+      <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
+        Upload
+      </button>
+      <div class="alert alert-light" role="alert">{{ message }}</div>
+      </details>
+    </form>
+  </div>
+</div>
+
+
+
