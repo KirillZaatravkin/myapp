@@ -25,6 +25,9 @@ public class CsetDAO {
     public void updateCset(Cset cset){
 
         Cset csetTemp = getCset(cset.getId());
+        if (csetTemp == null)
+            return; //TODO нужен обработчик
+
         int csetInt = cset.getCset();
         csetTemp.setCset(csetInt);
 

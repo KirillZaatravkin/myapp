@@ -53,8 +53,6 @@ public class Vopros {
         this.otvet = otvet;
     }
 
-
-
     public String getFile() {
         return file;
     }

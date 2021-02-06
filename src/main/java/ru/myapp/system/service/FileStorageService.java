@@ -18,17 +18,16 @@ import java.util.stream.Stream;
 @Service
 public class FileStorageService {
 
-    private final Path root = Paths.get("angularclient\\src\\assets\\image");
+    private static final Path root = Paths.get("angularclient\\src\\assets\\image");
     private VoprosDAO voprosDAO = new VoprosDAO();
 
-    public void init() {
+    public static void init() {
         try {
             Files.createDirectory(root);
         } catch (IOException e) {
             throw new RuntimeException("Could not initialize folder for upload!");
         }
     }
-
 
     public void save(MultipartFile file, String idVopros) {
         try {

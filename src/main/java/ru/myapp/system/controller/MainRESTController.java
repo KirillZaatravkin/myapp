@@ -34,13 +34,11 @@ public class MainRESTController {
 
     @GetMapping("/vopros")
     public List<Vopros> getAllVopros() {
-
         return voprosDAO.getAllVopros();
     }
 
     @PostMapping("/voprosadd")
     public void productAdd(@RequestBody Vopros Vopros) {
-
         voprosDAO.addVopros(Vopros);
     }
 
@@ -66,7 +64,7 @@ public class MainRESTController {
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("id") String idVopros) {
         String message = "";
         try {
-            storageService.save(file,idVopros);
+            storageService.save(file, idVopros);
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
@@ -81,7 +79,7 @@ public class MainRESTController {
     }
 
     @PostMapping("/csetUpdate")
-    public void csetUpdate (@RequestBody Cset cset) {
+    public void csetUpdate(@RequestBody Cset cset) {
         csetDAO.updateCset(cset);
     }
 }
