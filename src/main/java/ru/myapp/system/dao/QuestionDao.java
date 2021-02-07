@@ -1,7 +1,6 @@
 package ru.myapp.system.dao;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 import ru.myapp.system.model.Question;
@@ -51,10 +50,8 @@ public class QuestionDao {
         if (temp == null)
             return;//TODO нужен обработчик
 
-        Transaction tx1 = session.beginTransaction();
         temp.setFlag(true);
         session.saveOrUpdate(temp);
-        tx1.commit();
         session.close();
     }
 
