@@ -4,7 +4,7 @@
 
       <div class="form-group">
         <label for="title">Название вопроса</label>
-        <input type="text" [(ngModel)]="vopros.title"
+        <input type="text" [(ngModel)]="question.title"
                class="form-control"
                id="title"
                name="title"
@@ -13,33 +13,33 @@
 
       <div class="form-group">
         <label for="opisanie">Описание</label>
-        <input type="text" [(ngModel)]="vopros.opisanie"
+        <input type="text" [(ngModel)]="question.description"
                class="form-control"
                id="opisanie"
                name="opisanie"
                placeholder="Введите описаине">
       </div>
 
-      <div *ngIf="vopros.file != null">
-       <img autofocus class = "img-responsive" id="userImg" src="../assets/image/{{vopros.file}}" height="587px">
+      <div *ngIf="question.file != null">
+       <img autofocus class = "img-responsive" id="userImg" src="../assets/image/{{question.file}}" height="587px">
      </div>
-      <div *ngIf="vopros.flag">
-        <h2>Ответ: <span class="badge badge-primary" style="font-size: xx-large">{{vopros.otvet}}</span></h2>
+      <div *ngIf="question.flag">
+        <h2>Ответ: <span class="badge badge-primary" style="font-size: xx-large">{{question.otvet}}</span></h2>
       </div>
 
-      <button ng-click="showBlock = ! showBlock" class="btn btn-danger" (click)="closeProduct()">Ответ</button>
+      <button ng-click="showBlock = ! showBlock" class="btn btn-danger" (click)="closeQuestion()">Ответ</button>
 
       <details>
         <summary>Редактировать</summary>
         <div class="form-group">
           <label for="otvet">Ответ: </label>
-          <input type="text" [(ngModel)]="vopros.otvet"
+          <input type="text" [(ngModel)]="question.otvet"
                  class="form-control"
                  id="otvet"
                  name="otvet"
                  placeholder="Введите ответ">
         </div>
-        <button class="btn btn-info" (click)="updateProduct()">Update</button>
+        <button class="btn btn-info" (click)="updateQuestion()">Update</button>
       <div *ngIf="currentFile" class="progress">
         <div
           class="progress-bar progress-bar-info progress-bar-striped"

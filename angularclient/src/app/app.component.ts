@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Cset} from "./cset";
-import {CsetServiceService} from "./cset-service.service";
+import {Score} from "./score";
+import {ScoreServiceService} from "./score-service.service";
 
 @Component({
   selector: 'app-root',
@@ -10,18 +10,19 @@ import {CsetServiceService} from "./cset-service.service";
 })
 export class AppComponent implements OnInit   {
 
-  cset : Cset [];
+  score : Score [];
   title = 'Судья продажный';
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private  csetServiceService : CsetServiceService) { }
+              private scoreServiceService : ScoreServiceService) { }
 
   ngOnInit() {
-    this.csetServiceService.findCset().subscribe(data => {
-      this.cset = data;
+    this.scoreServiceService.findScore().subscribe(data => {
+      this.score = data;
     });
   }
-  updateCset(cset : Cset) {
-    this.csetServiceService.updateCset(cset).subscribe();
+
+  updatescore(score : Score) {
+    this.scoreServiceService.updateScore(score).subscribe();
   }
 }

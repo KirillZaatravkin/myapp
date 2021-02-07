@@ -13,7 +13,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgresPlusDialect</property>
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="ru.myapp.system.model.Vopros"/>
-        <mapping class="ru.myapp.system.model.Cset"/>
+        <mapping class="ru.myapp.system.model.Question"/>
+        <mapping class="ru.myapp.system.model.Score"/>
     </session-factory>
 </hibernate-configuration>

@@ -23,20 +23,20 @@
     </div>
 
       <div id="col1">
-        <div *ngFor="let prod of vopros; let i = index">
+        <div *ngFor="let question of question; let i = index">
           <div *ngIf="i < 7">
-            <div *ngIf ="prod.flag == false">
+            <div *ngIf ="question.flag == false">
              <div class="myblock">
-              <p>{{ prod.title }}</p>
-              <a [routerLink]="'/productabout'"
-                 [queryParams]="{'id':prod.id}">go</a>
+              <p>{{ question.title }}</p>
+              <a [routerLink]="'/questionabout'"
+                 [queryParams]="{'id':question.id}">go</a>
              </div>
             </div>
-            <div *ngIf ="prod.flag == true">
+            <div *ngIf ="question.flag == true">
               <div class="myblockClose">
                 <p>Вопрос закрыт</p>
-                <a [routerLink]="'/productabout'"
-                   [queryParams]="{'id':prod.id}">go</a>
+                <a [routerLink]="'/questionabout'"
+                   [queryParams]="{'id':question.id}">go</a>
               </div>
             </div>
           </div>
@@ -45,19 +45,19 @@
 
 
     <div id="col2">
-      <div *ngFor="let prod of vopros; let i = index">
+      <div *ngFor="let prod of question; let i = index">
         <div *ngIf="i > 6 && i < 14">
           <div *ngIf ="prod.flag == false">
             <div class="myblock">
               <p>{{ prod.title}}</p>
-              <a [routerLink]="'/productabout'"
+              <a [routerLink]="'/questionabout'"
                  [queryParams]="{'id':prod.id}">go</a>
             </div>
           </div>
           <div *ngIf ="prod.flag == true">
             <div class="myblockClose">
               <p>Вопрос закрыт</p>
-              <a [routerLink]="'/productabout'"
+              <a [routerLink]="'/questionabout'"
                  [queryParams]="{'id':prod.id}">go</a>
             </div>
           </div>
@@ -67,19 +67,19 @@
 
 
     <div id="col3">
-      <div *ngFor="let prod of vopros; let i = index">
+      <div *ngFor="let prod of question; let i = index">
         <div *ngIf="i > 13 && i < 21">
           <div *ngIf ="prod.flag == false">
             <div class="myblock">
               <p>{{ prod.title }}</p>
-              <a [routerLink]="'/productabout'"
+              <a [routerLink]="'/questionabout'"
                  [queryParams]="{'id':prod.id}">go</a>
             </div>
           </div>
           <div *ngIf ="prod.flag == true">
             <div class="myblockClose">
               <p>Вопрос закрыт</p>
-              <a [routerLink]="'/productabout'"
+              <a [routerLink]="'/questionabout'"
                  [queryParams]="{'id':prod.id}">go</a>
             </div>
           </div>

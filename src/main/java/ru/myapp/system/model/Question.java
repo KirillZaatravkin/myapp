@@ -6,8 +6,8 @@ import java.sql.Blob;
 
 
 @Entity
-@Table(name = "product")
-public class Vopros {
+@Table(name = "question")
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -15,8 +15,8 @@ public class Vopros {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "opisanie")
-    private String opisanie;
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "flag")
     private boolean flag;
@@ -85,11 +85,11 @@ public class Vopros {
         this.title = title;
     }
 
-    public String getOpisanie() {
-        return opisanie;
+    public String getDescription() {
+        return description;
     }
 
-    public void setOpisanie(String opisanie) {
-        this.opisanie = opisanie;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

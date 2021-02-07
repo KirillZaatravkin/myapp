@@ -1,71 +1,38 @@
 package ru.myapp.system.service;
 
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
-import ru.myapp.system.dao.VoprosDAO;
-import ru.myapp.system.model.Vopros;
+import ru.myapp.system.dao.QuestionDao;
+import ru.myapp.system.model.Question;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 @Service
 public class FileStorageService {
 
-    private static final Path root = Paths.get("angularclient\\src\\assets\\image");
-    private VoprosDAO voprosDAO = new VoprosDAO();
+    private static final Path ROOT = Paths.get("angularclient\\src\\assets\\image");
 
-    public static void init() {
-        try {
-            Files.createDirectory(root);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not initialize folder for upload!");
-        }
+    @Autowired
+    private QuestionDao questionDAO;
+
+    public void init() throws IOException {
+            Files.createDirectory(ROOT);
     }
 
-    public void save(MultipartFile file, String idVopros) {
-        try {
-            Vopros vopros = voprosDAO.getVopros(Integer.parseInt(idVopros));
-            voprosDAO.addFile(vopros, file);
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
-        } catch (Exception e) {
-            throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
-        }
+    public void save(MultipartFile file, String idVopros) throws IOException {
+            Question question = questionDAO.getQuestion(Integer.parseInt(idVopros));
+            questionDAO.addFile(question.getId(), file);
+            Files.copy(file.getInputStream(), this.ROOT.resolve(file.getOriginalFilename()));
     }
-
-
-    public Resource load(String filename) {
-        try {
-            Path file = root.resolve(filename);
-            Resource resource = new UrlResource(file.toUri());
-
-            if (resource.exists() || resource.isReadable()) {
-                return resource;
-            } else {
-                throw new RuntimeException("Could not read the file!");
-            }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("Error: " + e.getMessage());
-        }
-    }
-
 
     public void deleteAll() {
 
-        FileSystemUtils.deleteRecursively(root.toFile());
+        FileSystemUtils.deleteRecursively(ROOT.toFile());
     }
 
-    public Stream<Path> loadAll() {
-        try {
-            return Files.walk(this.root, 1).filter(path -> !path.equals(this.root)).map(this.root::relativize);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not load the files!");
-        }
-    }
 }

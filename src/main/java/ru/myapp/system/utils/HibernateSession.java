@@ -1,10 +1,9 @@
 package ru.myapp.system.utils;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import ru.myapp.system.model.Cset;
-import ru.myapp.system.model.Vopros;
+import ru.myapp.system.model.Score;
+import ru.myapp.system.model.Question;
 
 public class HibernateSession {
     private static SessionFactory sessionFactory;
@@ -15,10 +14,9 @@ public class HibernateSession {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration().configure();
-                configuration.addAnnotatedClass(Vopros.class);
-                configuration.addAnnotatedClass(Cset.class);
+                configuration.addAnnotatedClass(Question.class);
+                configuration.addAnnotatedClass(Score.class);
 
-                StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.configure("hibernate.cfg.xml").buildSessionFactory();
             } catch (Exception e) {
                 System.out.println("Error!" + e);

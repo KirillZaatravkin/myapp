@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Vopros} from "../vopros";
+import {Question} from "../question";
 import {ActivatedRoute, Router} from "@angular/router";
-import {VoprosServiceService} from "../vopros-service.service";
+import {QuestionServiceService} from "../question-service.service";
 import {Observable} from "rxjs";
 import {UploadServiceService} from "../upload-service.service";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
@@ -9,15 +9,15 @@ import {HttpEventType, HttpResponse} from "@angular/common/http";
 
 
 @Component({
-  selector: 'app-vopros-about',
-  templateUrl: './vopros-about.component.html',
-  styleUrls: ['./vopros-about.component.css'],
+  selector: 'app-question-about',
+  templateUrl: './question-about.component.html',
+  styleUrls: ['./question-about.component.css'],
 
 
 })
-export class VoprosAboutComponent implements OnInit  {
+export class QuestionAboutComponent implements OnInit  {
 
-  vopros: Vopros;
+  question: Question;
   id: string;
 
   selectedFiles: FileList;
@@ -28,21 +28,21 @@ export class VoprosAboutComponent implements OnInit  {
 
   constructor(  private route: ActivatedRoute,
                 private router: Router,
-                private productService: VoprosServiceService,
+                private questionService: QuestionServiceService,
                 private uploadService: UploadServiceService,
                 private activatedRoute:  ActivatedRoute) {
 
   }
 
-  updateProduct() {
-    this.productService.add(this.vopros).subscribe(result => this.goto());
+  updateQuestion() {
+    this.questionService.add(this.question).subscribe(result => this.goto());
   }
 
   goto() {
-    this.router.navigate(['/product']);
+    this.router.navigate(['/question']);
   }
-  closeProduct (){
-    this.productService.closePRoduct(this.vopros).subscribe(result => this.ngOnInit ());
+  closeQuestion (){
+    this.questionService.closeQuestion(this.question).subscribe(result => this.ngOnInit ());
   }
 
   selectFile(event) {
@@ -53,7 +53,7 @@ export class VoprosAboutComponent implements OnInit  {
     this.progress = 0;
 
     this.currentFile = this.selectedFiles.item(0);
-    this.uploadService.upload(this.currentFile, this.vopros.id).subscribe(
+    this.uploadService.upload(this.currentFile, this.question.id).subscribe(
       event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -77,11 +77,11 @@ export class VoprosAboutComponent implements OnInit  {
     this.activatedRoute.queryParams.subscribe(
       data => this.id= data['id']);
     if (this.id != null){
-      this.productService.getProduct(this.id).subscribe(data => {
-        this.vopros = data;
+      this.questionService.getQuestion(this.id).subscribe(data => {
+        this.question = data;
       });
     }else {
-      this.vopros = new Vopros();
+      this.question = new Question();
     }
   }
 }

@@ -3,8 +3,8 @@ package ru.myapp.system.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cset")
-public class Cset {
+@Table(name = "score")
+public class Score {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -12,8 +12,8 @@ public class Cset {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "cset")
-    private int cset;
+    @Column(name = "score")
+    private int score;
 
     public int getId() {
         return id;
@@ -31,11 +31,11 @@ public class Cset {
         this.title = title;
     }
 
-    public int getCset() {
-        return cset;
+    public int getScore() {
+        return score;
     }
 
-    public void setCset(int cset) {
-        this.cset = cset;
+    public void setScore(int score) {
+        this.score = score;
     }
 }

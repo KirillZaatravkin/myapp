@@ -1,11 +1,10 @@
 
 
-export class Vopros {
+export class Question {
   id : string;
   title : string;
-  opisanie : string;
+  description : string;
   flag : boolean;
   file : string;
   otvet : string;
-  fileBlob : Blob;
 }

@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
-import ru.myapp.system.model.Vopros;
+import ru.myapp.system.model.Question;
 import ru.myapp.system.utils.HibernateSession;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -13,43 +13,40 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class VoprosDAO {
+public class QuestionDao {
 
-    public List<Vopros> getAllVopros() {
-        String hql = "FROM Vopros order by id";
-        List<Vopros> result = (List<Vopros>) HibernateSession.getSessionFactory().openSession().createQuery(hql).list();
+    public List<Question> getAllQuestion() {
+        String hql = "FROM Question order by id";
+        List<Question> result = (List<Question>) HibernateSession.getSessionFactory().openSession().createQuery(hql).list();
         return result;
     }
 
-    public void addVopros(Vopros Vopros) {
+    public void addQuestion(Question Question) {
         Session session = HibernateSession.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        Vopros.setFlag(false);
-
-        session.save(Vopros);
-        tx1.commit();
+        Question.setFlag(false);
+        session.save(Question);
         session.close();
     }
 
-    public Vopros getVopros(int id) {
+    public Question getQuestion(int id) {
         Session session = HibernateSession.getSessionFactory().openSession();
-        return session.get(Vopros.class, id);
+        return session.get(Question.class, id);
     }
 
-    public Vopros getProductWithImage(int id) throws SQLException {
+    public Question getQuestionWithImage(int id) throws SQLException {
         Session session = HibernateSession.getSessionFactory().openSession();
-        Vopros result = session.get(Vopros.class, id);
+        Question result = session.get(Question.class, id);
         if (result != null) {
             if (result.getFilebaty() != null) {
                 result.setFileBlob(new SerialBlob(result.getFilebaty()));
             }
         }
-        return session.get(Vopros.class, id);
+        return session.get(Question.class, id);
     }
 
-    public void closeVopros(Vopros vopros) {
+    public void closeQuestion(int id) {
         Session session = HibernateSession.getSessionFactory().openSession();
-        Vopros temp = getVopros(vopros.getId());
+        Question temp = getQuestion(id);
 
         if (temp == null)
             return;//TODO нужен обработчик
@@ -61,16 +58,16 @@ public class VoprosDAO {
         session.close();
     }
 
-    public void addFile(Vopros vopros, MultipartFile file) throws IOException {
+    public void addFile(int id , MultipartFile file) throws IOException {
         Session session = HibernateSession.getSessionFactory().openSession();
-        Vopros temp = getVopros(vopros.getId());
+        Question temp = getQuestion(id);
+
         if (temp == null)
             return; //TODO нужен обработчик
-        Transaction tx1 = session.beginTransaction();
+
         temp.setFile(file.getOriginalFilename());
         temp.setFilebaty(file.getBytes());
         session.saveOrUpdate(temp);
-        tx1.commit();
         session.close();
     }
 }

@@ -6,8 +6,8 @@
           <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
           <ul class="text-center list-inline py-1">
             <li class="list-inline-item">
-              <a routerLink="/vopros" class="btn btn-info">Играть</a>
-              <a routerLink="/voprosabout" class="btn btn-info">Настройка</a>
+              <a routerLink="/question" class="btn btn-info">Играть</a>
+              <a routerLink="/questionabout" class="btn btn-info">Настройка</a>
             </li>
           </ul>
         </div>
@@ -20,17 +20,17 @@
   </div>
   <div style="background-color: #DDDDDD">
     <div class="row" style="margin: 12px">
-      <div *ngFor="let csetItem of cset; let i = index" >
+      <div *ngFor="let csetItem of score; let i = index" >
         <form class="form">
-          <p><label class="cset">{{csetItem.title}}</label></p>
+          <p><label class="score">{{csetItem.title}}</label></p>
           <div class="form-group">
-            <input type="text" [(ngModel)]="csetItem.cset"
+            <input type="text" [(ngModel)]="csetItem.score"
 
                    class="form-control"
-                   id="cset"
-                   name="cset">
+                   id="score"
+                   name="score">
           </div>
-          <button class="btn btn-info" (click)="updateCset(csetItem)">Update</button>
+          <button class="btn btn-info" (click)="updatescore(csetItem)">Update</button>
 
         </form>
       </div>
